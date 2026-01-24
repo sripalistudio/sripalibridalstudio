@@ -231,3 +231,104 @@ button {
   background-repeat: repeat-x;
   background-position: left top;
 }
+
+/* =========================================
+   Admin Panel Responsive Styles
+   ========================================= */
+
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0F1014;
+  color: #fff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.admin-sidebar {
+  width: 250px;
+  background-color: #12141a;
+  border-right: 1px solid #333;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  z-index: 50;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.admin-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  width: 100%; /* Ensure it takes full width when needed */
+}
+
+.admin-mobile-header {
+  display: none; /* Hidden on desktop */
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #12141a;
+  border-bottom: 1px solid #333;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.admin-mobile-toggle {
+  background: transparent;
+  color: #c6a87c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 900px) {
+  .admin-container {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%); /* Hidden by default */
+  }
+
+  .admin-sidebar.open {
+    transform: translateX(0);
+    box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+  }
+
+  .sidebar-overlay.open {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 45; /* Below sidebar, above content */
+    backdrop-filter: blur(2px);
+  }
+
+  .admin-mobile-header {
+    display: flex;
+  }
+
+  .admin-content {
+    padding: 1rem;
+  }
+}

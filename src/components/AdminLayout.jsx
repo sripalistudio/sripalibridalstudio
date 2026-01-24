@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "../supabaseClient";
-import { LayoutDashboard, Calendar, Package, Image, LogOut, Mail } from "lucide-react";
+import { LayoutDashboard, Calendar, Package, Image, LogOut, Mail, Menu, X } from "lucide-react";
 
 const AdminLayout = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const handleLogout = async () => {
         await supabase.auth.signOut();
@@ -21,9 +20,30 @@ const AdminLayout = () => {
     ];
 
     return (
-        <div style={{ display: "flex", minHeight: "100vh", background: "#0F1014", color: "#fff" }}>
+        <div className="admin-container">
+            {/* Mobile Header */}
+            <div className="admin-mobile-header">
+                <h3 style={{ color: "#c6a87c", margin: 0 }}>Admin Panel</h3>
+                <button
+                    className="admin-mobile-toggle"
+                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                >
+                    {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+            </div>
+
+            {/* Sidebar Overlay */}
+            <div
+                className={`sidebar-overlay ${isSidebarOpen ? 'open' : ''}`}
+                onClick={() => setIsSidebarOpen(false)}
+            />
+
             {/* Sidebar */}
-            <aside style={{ width: "250px", background: "#12141a", borderRight: "1px solid #333", padding: "1.5rem", display: "flex", flexDirection: "column" }}>
+            <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
+                <h2 style={{ color: "#c6a87c", marginBottom: "2rem", textAlign: "center", display: "none" }} className="desktop-logo">Admin Panel</h2>
+                {/* We can hide this h2 on mobile since we have the header, or adjust styles. 
+                    I'll add a style to show it only on desktop via inline check or class. 
+                    Actually, let's just keep it, it will slide in. */}
                 <h2 style={{ color: "#c6a87c", marginBottom: "2rem", textAlign: "center" }}>Admin Panel</h2>
 
                 <nav style={{ flex: 1 }}>
@@ -33,6 +53,7 @@ const AdminLayout = () => {
                             <Link
                                 key={item.path}
                                 to={item.path}
+                                onClick={() => setIsSidebarOpen(false)} // Close on click
                                 style={{
                                     display: "flex",
                                     alignItems: "center",
@@ -76,7 +97,7 @@ const AdminLayout = () => {
             </aside>
 
             {/* Main Content */}
-            <main style={{ flex: 1, padding: "2rem", overflowY: "auto" }}>
+            <main className="admin-content">
                 <Outlet />
             </main>
         </div>
