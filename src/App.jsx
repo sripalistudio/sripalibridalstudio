@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, LazyMotion, domAnimation } from "framer-motion";
 
 import AdminLayout from "./components/AdminLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -45,56 +45,58 @@ function App() {
       <ScrollToTop />
 
       {!loading && (
-        <div className="app-container">
-          {/* ✅ Hide Navbar in Admin */}
-          {!isAdminRoute && <Navbar />}
+        <LazyMotion features={domAnimation}>
+          <div className="app-container">
+            {/* ✅ Hide Navbar in Admin */}
+            {!isAdminRoute && <Navbar />}
 
-          {/* Main Content */}
-          <main style={{ minHeight: "100vh", position: "relative" }}>
-            <Suspense fallback={<Loader />}>
-              <AnimatePresence mode="wait">
-                <Routes location={location} key={location.pathname}>
-                  {/* ================= PUBLIC ROUTES ================= */}
-                  <Route path="/" element={<Home />} />
-                  <Route path="/gallery" element={<Gallery />} />
-                  <Route path="/packages" element={<Packages />} />
-                  <Route path="/founder" element={<Founder />} />
-                  <Route path="/testimonials" element={<Testimonials />} />
-                  <Route path="/faq" element={<FAQ />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/booking" element={<Booking />} />
+            {/* Main Content */}
+            <main style={{ minHeight: "100vh", position: "relative" }}>
+              <Suspense fallback={<Loader />}>
+                <AnimatePresence mode="wait">
+                  <Routes location={location} key={location.pathname}>
+                    {/* ================= PUBLIC ROUTES ================= */}
+                    <Route path="/" element={<Home />} />
+                    <Route path="/gallery" element={<Gallery />} />
+                    <Route path="/packages" element={<Packages />} />
+                    <Route path="/founder" element={<Founder />} />
+                    <Route path="/testimonials" element={<Testimonials />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/booking" element={<Booking />} />
 
-                  <Route
-                    path="/bridal-studio-vyasarpadi"
-                    element={<BridalStudioVyasarpadi />}
-                  />
+                    <Route
+                      path="/bridal-studio-vyasarpadi"
+                      element={<BridalStudioVyasarpadi />}
+                    />
 
-                  {/* ================= ADMIN ROUTES ================= */}
-                  <Route path="/admin/login" element={<AdminLogin />} />
-                  <Route path="/admin/reset-password" element={<AdminResetPassword />} />
+                    {/* ================= ADMIN ROUTES ================= */}
+                    <Route path="/admin/login" element={<AdminLogin />} />
+                    <Route path="/admin/reset-password" element={<AdminResetPassword />} />
 
-                  {/* Protected Admin Routes */}
-                  <Route element={<ProtectedRoute />}>
-                    <Route element={<AdminLayout />}>
-                      <Route path="/admin/dashboard" element={<AdminDashboard />} />
-                      <Route path="/admin/bookings" element={<AdminBookings />} />
-                      <Route path="/admin/messages" element={<AdminMessages />} />
-                      <Route path="/admin/profile" element={<AdminProfile />} />
-                      {/* Placeholder routes for now, will implement files next */}
-                      <Route path="/admin/packages" element={<AdminPackages />} />
-                      <Route path="/admin/gallery" element={<AdminGallery />} />
+                    {/* Protected Admin Routes */}
+                    <Route element={<ProtectedRoute />}>
+                      <Route element={<AdminLayout />}>
+                        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                        <Route path="/admin/bookings" element={<AdminBookings />} />
+                        <Route path="/admin/messages" element={<AdminMessages />} />
+                        <Route path="/admin/profile" element={<AdminProfile />} />
+                        {/* Placeholder routes for now, will implement files next */}
+                        <Route path="/admin/packages" element={<AdminPackages />} />
+                        <Route path="/admin/gallery" element={<AdminGallery />} />
+                      </Route>
                     </Route>
-                  </Route>
 
-                </Routes>
-              </AnimatePresence>
-            </Suspense>
-          </main>
+                  </Routes>
+                </AnimatePresence>
+              </Suspense>
+            </main>
 
-          {/* ✅ Hide Footer & Chatbot in Admin */}
-          {!isAdminRoute && <Footer />}
-          {!isAdminRoute && <Chatbot />}
-        </div >
+            {/* ✅ Hide Footer & Chatbot in Admin */}
+            {!isAdminRoute && <Footer />}
+            {!isAdminRoute && <Chatbot />}
+          </div >
+        </LazyMotion>
       )
       }
     </>
