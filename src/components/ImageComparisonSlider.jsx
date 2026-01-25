@@ -64,6 +64,7 @@ const ImageComparisonSlider = ({ beforeImage, afterImage, beforeLabel = "BEFORE"
             <img
                 src={afterImage}
                 alt="After"
+                loading="lazy"
                 style={{
                     position: 'absolute',
                     top: 0,
@@ -92,6 +93,7 @@ const ImageComparisonSlider = ({ beforeImage, afterImage, beforeLabel = "BEFORE"
                 <img
                     src={beforeImage}
                     alt="Before"
+                    loading="lazy"
                     style={{
                         position: 'absolute',
                         top: 0,

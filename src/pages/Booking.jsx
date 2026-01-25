@@ -159,6 +159,21 @@ const Booking = () => {
       >
         <div className="receipt-card">
           <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+            <div
+              style={{
+                background: "#f0fdf4",
+                borderRadius: "50%",
+                width: "80px",
+                height: "80px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: "0 auto 1.5rem",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+              }}
+            >
+              <CheckCircle size={40} color="#15803d" />
+            </div>
             <h2
               style={{
                 fontSize: "2.5rem",
@@ -172,11 +187,16 @@ const Booking = () => {
             </h2>
             <p
               style={{
-                fontSize: "0.9rem",
-                color: "#666",
+                fontSize: "1rem",
+                color: "#15803d",
                 textTransform: "uppercase",
                 letterSpacing: "2px",
                 marginBottom: "1.5rem",
+                fontWeight: "bold",
+                background: "rgba(255,255,255,0.3)",
+                padding: "0.5rem",
+                borderRadius: "4px",
+                display: "inline-block",
               }}
             >
               SUCCESSFULLY BOOKED!

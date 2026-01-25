@@ -96,7 +96,26 @@ const AdminDashboard = () => {
     },
   ];
 
-  if (loading) return <p style={{ color: "#fff" }}>Loading Dashboard...</p>;
+  if (loading) return (
+    <div>
+      <h1 style={{ color: "#c6a87c", marginBottom: "1.5rem" }}>Safe Dashboard</h1>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
+        {[1, 2, 3, 4, 5].map((i) => (
+          <div key={i} style={{ background: "#12141a", padding: "1.5rem", borderRadius: "8px", border: "1px solid #333", height: "120px", animation: "pulse 1.5s infinite" }}>
+            <div style={{ height: "20px", width: "40%", background: "rgba(255,255,255,0.05)", marginBottom: "1rem" }}></div>
+            <div style={{ height: "40px", width: "20%", background: "rgba(255,255,255,0.05)" }}></div>
+          </div>
+        ))}
+      </div>
+      <style>{`
+            @keyframes pulse {
+                0% { opacity: 0.6; }
+                50% { opacity: 1; }
+                100% { opacity: 0.6; }
+            }
+          `}</style>
+    </div>
+  );
 
   return (
     <div>

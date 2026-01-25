@@ -107,11 +107,38 @@ const Portfolio = () => {
           </p>
         </div>
 
-        {/* Loading */}
+        {/* Skeleton Loading */}
         {loading && (
-          <p style={{ textAlign: "center", color: "#aaa" }}>
-            Loading gallery...
-          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+              gap: "1.5rem",
+            }}
+          >
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div
+                key={i}
+                style={{
+                  aspectRatio: "4/3",
+                  background: "var(--color-bg-soft)",
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                  position: "relative",
+                  animation: "pulse 1.5s infinite"
+                }}
+              >
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "30%", background: "linear-gradient(to top, rgba(255,255,255,0.05), transparent)" }}></div>
+              </div>
+            ))}
+            <style>{`
+                @keyframes pulse {
+                  0% { opacity: 0.6; }
+                  50% { opacity: 1; }
+                  100% { opacity: 0.6; }
+                }
+              `}</style>
+          </div>
         )}
 
         {/* Empty */}
@@ -214,7 +241,8 @@ const Portfolio = () => {
 
             {/* Prev */}
             <button
-              onClick={prevImage}
+              onClick={(e) => { e.stopPropagation(); prevImage(); }}
+              className="lightbox-nav-btn prev"
               style={{
                 position: "absolute",
                 left: "2rem",
@@ -222,6 +250,7 @@ const Portfolio = () => {
                 background: "rgba(255,255,255,0.1)",
                 borderRadius: "50%",
                 padding: "1rem",
+                zIndex: 1010,
               }}
             >
               <ChevronLeft size={24} />
@@ -229,7 +258,8 @@ const Portfolio = () => {
 
             {/* Next */}
             <button
-              onClick={nextImage}
+              onClick={(e) => { e.stopPropagation(); nextImage(); }}
+              className="lightbox-nav-btn next"
               style={{
                 position: "absolute",
                 right: "2rem",
@@ -237,10 +267,28 @@ const Portfolio = () => {
                 background: "rgba(255,255,255,0.1)",
                 borderRadius: "50%",
                 padding: "1rem",
+                zIndex: 1010,
               }}
             >
               <ChevronRight size={24} />
             </button>
+
+            <style>{`
+              @media (max-width: 768px) {
+                .lightbox-nav-btn {
+                  padding: 0.8rem !important;
+                  bottom: 2rem;
+                  top: auto;
+                }
+                .lightbox-nav-btn.prev {
+                  left: 20% !important;
+                }
+                .lightbox-nav-btn.next {
+                  right: 20% !important;
+                  left: auto !important;
+                }
+              }
+            `}</style>
 
             {/* Image */}
             <motion.div
@@ -255,8 +303,6 @@ const Portfolio = () => {
                 src={selectedImage.src}
                 alt={selectedImage.caption}
                 animate={{ scale: zoomLevel }}
-                drag
-                dragElastic={0.2}
                 onClick={toggleZoom}
                 style={{
                   maxWidth: "100%",

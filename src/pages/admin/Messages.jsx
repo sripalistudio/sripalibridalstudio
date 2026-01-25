@@ -45,11 +45,26 @@ const AdminMessages = () => {
     return (
         <div>
             <div style={{ marginBottom: "2rem" }}>
-                <h1 style={{ color: "#c6a87c" }}>Inox - Messages</h1>
+                <h1 style={{ color: "#c6a87c" }}>Inbox - Messages</h1>
             </div>
 
             {loading ? (
-                <p style={{ color: "#fff" }}>Loading messages...</p>
+                <div style={{ display: "grid", gap: "1rem" }}>
+                    {[1, 2, 3].map((i) => (
+                        <div key={i} style={{ background: "#1f2430", borderRadius: "8px", padding: "1.5rem", height: "150px", animation: "pulse 1.5s infinite" }}>
+                            <div style={{ height: "20px", width: "30%", background: "rgba(255,255,255,0.05)", marginBottom: "1rem" }}></div>
+                            <div style={{ height: "15px", width: "20%", background: "rgba(255,255,255,0.05)", marginBottom: "2rem" }}></div>
+                            <div style={{ height: "15px", width: "80%", background: "rgba(255,255,255,0.05)" }}></div>
+                        </div>
+                    ))}
+                    <style>{`
+                        @keyframes pulse {
+                            0% { opacity: 0.6; }
+                            50% { opacity: 1; }
+                            100% { opacity: 0.6; }
+                        }
+                    `}</style>
+                </div>
             ) : (
                 <div style={{ display: "grid", gap: "1rem" }}>
                     {messages.length === 0 && <p style={{ color: "#aaa" }}>No messages found.</p>}

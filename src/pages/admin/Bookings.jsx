@@ -73,7 +73,26 @@ const AdminBookings = () => {
       </div>
 
       {loading ? (
-        <p style={{ color: "#fff" }}>Loading bookings...</p>
+        <div style={{ overflowX: "auto", background: "#12141a", borderRadius: "12px", border: "1px solid #333", padding: "1rem" }}>
+          <div style={{ animation: "pulse 1.5s infinite" }}>
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} style={{ display: "flex", gap: "1rem", marginBottom: "1rem", borderBottom: "1px solid #333", paddingBottom: "1rem" }}>
+                <div style={{ height: "20px", width: "20%", background: "rgba(255,255,255,0.05)" }}></div>
+                <div style={{ height: "20px", width: "20%", background: "rgba(255,255,255,0.05)" }}></div>
+                <div style={{ height: "20px", width: "20%", background: "rgba(255,255,255,0.05)" }}></div>
+                <div style={{ height: "20px", width: "20%", background: "rgba(255,255,255,0.05)" }}></div>
+                <div style={{ height: "20px", width: "10%", background: "rgba(255,255,255,0.05)" }}></div>
+              </div>
+            ))}
+          </div>
+          <style>{`
+                @keyframes pulse {
+                    0% { opacity: 0.6; }
+                    50% { opacity: 1; }
+                    100% { opacity: 0.6; }
+                }
+              `}</style>
+        </div>
       ) : (
         <div style={{ overflowX: "auto", background: "#12141a", borderRadius: "12px", border: "1px solid #333" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", color: "#ddd" }}>

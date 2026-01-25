@@ -21,7 +21,7 @@ const Packages = () => {
 
     const { data, error } = await supabase
       .from("packages")
-      .select("*")
+      .select("id, title, price, description, features")
       .eq("website_type", WEBSITE_TYPE)
       .eq("is_active", true)
       .order("created_at", { ascending: false });
@@ -59,9 +59,40 @@ const Packages = () => {
 
       {/* Loading */}
       {loading && (
-        <p style={{ textAlign: "center", color: "#aaa" }}>
-          Loading packages...
-        </p>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "2rem",
+          }}
+        >
+          {[1, 2, 3].map((i) => (
+            <div
+              key={i}
+              style={{
+                background: "var(--color-bg-soft)",
+                padding: "2.5rem",
+                border: "1px solid rgba(198, 168, 124, 0.1)",
+                borderRadius: "8px",
+                height: "400px",
+                animation: "pulse 1.5s infinite"
+              }}
+            >
+              <div style={{ height: "30px", width: "60%", background: "rgba(255,255,255,0.05)", marginBottom: "1rem" }}></div>
+              <div style={{ height: "40px", width: "40%", background: "rgba(255,255,255,0.05)", marginBottom: "2rem" }}></div>
+              <div style={{ height: "20px", width: "100%", background: "rgba(255,255,255,0.05)", marginBottom: "0.5rem" }}></div>
+              <div style={{ height: "20px", width: "90%", background: "rgba(255,255,255,0.05)", marginBottom: "0.5rem" }}></div>
+              <div style={{ height: "20px", width: "70%", background: "rgba(255,255,255,0.05)" }}></div>
+            </div>
+          ))}
+          <style>{`
+            @keyframes pulse {
+              0% { opacity: 0.6; }
+              50% { opacity: 1; }
+              100% { opacity: 0.6; }
+            }
+          `}</style>
+        </div>
       )}
 
       {/* Empty */}

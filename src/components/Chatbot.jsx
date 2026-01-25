@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const faqData = [
     { id: 1, q: "How do I book an appointment?", a: "You can book directly through our 'Book Now' page. Select your service, date, and time!" },
-    { id: 2, q: "What is the starting price?", a: "Our packages start from ₹15,000 for engagement makeup. Check the Packages page for more details." },
+    { id: 2, q: "What is the starting price?", a: "Our packages start from ₹3,000. Check the Packages page for more details." },
     { id: 3, q: "Do you travel for weddings?", a: "Yes, we are available for destination weddings and venue visits. Travel fees apply." },
     { id: 4, q: "Can I get a trial?", a: "Yes, we offer paid trial sessions for brides to finalize their look." }
 ];
@@ -12,7 +12,7 @@ const faqData = [
 const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
-        { type: 'bot', text: "Namaste! Welcome to Sripali Bridal Studio. How can I assist you today?" }
+        { type: 'bot', text: "Welcome to Sripali Bridal Studio. How can I assist you today?" }
     ]);
     const messagesEndRef = useRef(null);
 
@@ -69,12 +69,10 @@ const Chatbot = () => {
                         initial={{ opacity: 0, y: 20, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.9 }}
+                        className="chatbot-container"
                         style={{
                             position: 'fixed',
                             bottom: '5rem',
-                            right: '2rem',
-                            width: '350px',
-                            height: '500px',
                             background: '#1A1C23',
                             borderRadius: '12px',
                             boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
@@ -85,6 +83,21 @@ const Chatbot = () => {
                             overflow: 'hidden'
                         }}
                     >
+                        <style>{`
+                            .chatbot-container {
+                                width: 350px;
+                                height: 500px;
+                                right: 2rem;
+                            }
+                            @media (max-width: 480px) {
+                                .chatbot-container {
+                                    width: 90% !important;
+                                    height: 70vh !important;
+                                    right: 5% !important;
+                                    bottom: 6rem !important;
+                                }
+                            }
+                        `}</style>
                         {/* Header */}
                         <div style={{ padding: '1rem', background: '#0F1014', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                             <div style={{ width: '10px', height: '10px', background: '#10B981', borderRadius: '50%' }}></div>
@@ -141,7 +154,7 @@ const Chatbot = () => {
                         </div>
                     </motion.div>
                 )}
-            </AnimatePresence>
+            </AnimatePresence >
         </>
     );
 };

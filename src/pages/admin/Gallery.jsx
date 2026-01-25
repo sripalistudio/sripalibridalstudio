@@ -161,7 +161,23 @@ const AdminGallery = () => {
             </div>
 
             {loading ? (
-                <p style={{ color: "#fff" }}>Loading images...</p>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "1.5rem" }}>
+                    {[1, 2, 3, 4].map((i) => (
+                        <div key={i} style={{ background: "#12141a", border: "1px solid #333", borderRadius: "12px", height: "250px", animation: "pulse 1.5s infinite" }}>
+                            <div style={{ height: "200px", background: "rgba(255,255,255,0.05)" }}></div>
+                            <div style={{ padding: "1rem" }}>
+                                <div style={{ height: "15px", width: "50%", background: "rgba(255,255,255,0.05)" }}></div>
+                            </div>
+                        </div>
+                    ))}
+                    <style>{`
+                        @keyframes pulse {
+                            0% { opacity: 0.6; }
+                            50% { opacity: 1; }
+                            100% { opacity: 0.6; }
+                        }
+                    `}</style>
+                </div>
             ) : (
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "1.5rem" }}>
                     {images.map((img) => (

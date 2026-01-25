@@ -29,11 +29,11 @@ const Founder = () => {
     ];
 
     const timelineEvents = [
-        { year: '2014', title: 'The Beginning', desc: 'Started journey as a freelance makeup artist, discovering a passion for bridal transformations.' },
-        { year: '2016', title: 'Certification Excellence', desc: 'Advanced certification from top academies in Mumbai and Dubai, specializing in HD and Airbrush techniques.' },
-        { year: '2018', title: 'Studio Launch', desc: 'Opened the first flagship Sripali Bridal Studio, creating a sanctuary for brides.' },
-        { year: '2022', title: 'Industry Recognition', desc: 'Awarded "Best Bridal Makeup Artist" in the region. Reached the milestone of 500+ happy brides.' },
-        { year: '2026', title: 'Innovation Continues', desc: 'Launching new masterclasses and expanding services to redefining luxury bridal care.' }
+        { year: '2001 - 2002', title: 'The Beginning', desc: 'Lalitha.S entered the beauty and makeup industry. Started the journey as a freelance makeup artist while balancing a career as an accountant.' },
+        { year: '2013', title: 'First Salon (Mar 13)', desc: 'Opened the first "Sripali Beauty Salon" in Perambur, inspired by clients requesting a dedicated space for her services.' },
+        { year: '2015', title: 'Expansion (May 15)', desc: 'Shifted and expanded the salon to Purasawakkam, growing the client base steadily.' },
+        { year: '2025', title: 'Sripali Bridal Studio (Mar 13)', desc: 'Launched a new branch "Sripali Bridal Studio" in Sharma Nagar, marking a significant milestone after navigating the challenges of the pandemic.' },
+        { year: '2025', title: 'Magic 7 Launch (Sep 01)', desc: 'Expanded the brand portfolio with the opening of "Magic 7 Signature Salon".' }
     ];
 
     return (
@@ -44,8 +44,8 @@ const Founder = () => {
             className="founder-page"
         >
             <SEO
-                title="Meet Lalitha.S - Lead Artist"
-                description="Lalitha.S is an award-winning bridal makeup artist with over 10 years of experience. Learn about her philosophy and journey."
+                title="Meet Lalitha.S - Founder & Lead Artist"
+                description="Lalitha.S is an experienced bridal makeup artist with a journey spanning over two decades. Learn about her story from freelance artist to studio owner."
             />
             {/* Hero Section */}
             <section className="section-padding" style={{ paddingTop: '150px', background: '#0F1014' }}>
@@ -63,7 +63,7 @@ const Founder = () => {
                             <div style={{ position: 'absolute', top: '20px', left: '-20px', width: '100%', height: '100%', border: '1px solid var(--color-gold)', borderRadius: '8px', zIndex: 0 }}></div>
                             <img
                                 src="/assets/founder.webp"
-                                alt="Sripali - Founder"
+                                alt="Lalitha.S - Founder"
                                 style={{ width: '100%', display: 'block', borderRadius: '8px', position: 'relative', zIndex: 1, filter: 'grayscale(10%) contrast(1.05)' }}
                             />
                         </motion.div>
@@ -79,16 +79,19 @@ const Founder = () => {
                             <h1 style={{ fontSize: '3.5rem', marginBottom: '1.5rem', color: '#fff' }}>Lalitha.S</h1>
 
                             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
-                                <span style={{ background: 'rgba(198, 168, 124, 0.15)', color: 'var(--color-gold)', padding: '0.4rem 1rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 600 }}>10+ Years Experience</span>
-                                <span style={{ background: 'rgba(198, 168, 124, 0.15)', color: 'var(--color-gold)', padding: '0.4rem 1rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 600 }}>Award Winning Artist</span>
-                                <span style={{ background: 'rgba(198, 168, 124, 0.15)', color: 'var(--color-gold)', padding: '0.4rem 1rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 600 }}>Certified Expert</span>
+                                <span style={{ background: 'rgba(198, 168, 124, 0.15)', color: 'var(--color-gold)', padding: '0.4rem 1rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 600 }}>20+ Years Experience</span>
+                                <span style={{ background: 'rgba(198, 168, 124, 0.15)', color: 'var(--color-gold)', padding: '0.4rem 1rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 600 }}>300+ Brides</span>
+                                <span style={{ background: 'rgba(198, 168, 124, 0.15)', color: 'var(--color-gold)', padding: '0.4rem 1rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 600 }}>Educator & Mentor</span>
                             </div>
 
                             <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-                                "Beauty is not about masking who you are; it's about revealing your most confident self. My journey began with a simple belief: every bride deserves to feel like a queen on her special day."
+                                "It started as a passion in 2001, balancing freelance makeup artistry alongside my career as an accountant. But the trust and compliments from my clients—who were willing to follow me wherever I went—inspired me to build something permanent."
                             </p>
                             <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '2rem' }}>
-                                Over the last decade, I have dedicated myself to mastering the art of bridal makeup, understanding diverse skin tones, and creating looks that are timeless. My mission is to provide an experience that is as memorable as the look itself.
+                                From humble freelance beginnings to establishing multiple salon branches in Chennai, my journey has been built on resilience and a relentless pursuit of excellence. Today, having transformed over 300 brides for their special moments—be it weddings, baby showers, or puberty ceremonies—I continue to upgrade my skills every single year to give nothing but the best.
+                            </p>
+                            <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '2rem' }}>
+                                Beyond services, I am passionate about education. Through our academy, I share my knowledge with the next generation, training aspiring artists and creating job opportunities in the industry.
                             </p>
 
                         </motion.div>

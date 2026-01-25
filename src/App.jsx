@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
-import AdminLogin from "./pages/admin/Login";
-import AdminDashboard from "./pages/admin/Dashboard";
+import AdminLayout from "./components/AdminLayout";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -11,21 +11,24 @@ import Loader from "./components/Loader";
 import Chatbot from "./components/Chatbot";
 import ScrollToTop from "./components/ScrollToTop";
 
-import Home from "./pages/Home";
-import Gallery from "./pages/Gallery";
-import Packages from "./pages/Packages";
-import Founder from "./pages/Founder";
-import Testimonials from "./pages/Testimonials";
-import FAQ from "./pages/FAQ";
-import Contact from "./pages/Contact";
-import Booking from "./pages/Booking";
-import BridalStudioVyasarpadi from "./pages/BridalStudioVyasarpadi";
-import AdminBookings from "./pages/admin/Bookings";
-import AdminPackages from "./pages/admin/Packages";
-import AdminGallery from "./pages/admin/Gallery";
-import AdminMessages from "./pages/admin/Messages";
-import ProtectedRoute from "./components/ProtectedRoute";
-import AdminLayout from "./components/AdminLayout";
+// Lazy Load Pages
+const Home = React.lazy(() => import("./pages/Home"));
+const Gallery = React.lazy(() => import("./pages/Gallery"));
+const Packages = React.lazy(() => import("./pages/Packages"));
+const Founder = React.lazy(() => import("./pages/Founder"));
+const Testimonials = React.lazy(() => import("./pages/Testimonials"));
+const FAQ = React.lazy(() => import("./pages/FAQ"));
+const Contact = React.lazy(() => import("./pages/Contact"));
+const Booking = React.lazy(() => import("./pages/Booking"));
+const BridalStudioVyasarpadi = React.lazy(() => import("./pages/BridalStudioVyasarpadi"));
+
+// Admin Pages Lazy Load
+const AdminLogin = React.lazy(() => import("./pages/admin/Login"));
+const AdminDashboard = React.lazy(() => import("./pages/admin/Dashboard"));
+const AdminBookings = React.lazy(() => import("./pages/admin/Bookings"));
+const AdminPackages = React.lazy(() => import("./pages/admin/Packages"));
+const AdminGallery = React.lazy(() => import("./pages/admin/Gallery"));
+const AdminMessages = React.lazy(() => import("./pages/admin/Messages"));
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -46,47 +49,50 @@ function App() {
 
           {/* Main Content */}
           <main style={{ minHeight: "100vh", position: "relative" }}>
-            <AnimatePresence mode="wait">
-              <Routes location={location} key={location.pathname}>
-                {/* ================= PUBLIC ROUTES ================= */}
-                <Route path="/" element={<Home />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/packages" element={<Packages />} />
-                <Route path="/founder" element={<Founder />} />
-                <Route path="/testimonials" element={<Testimonials />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/booking" element={<Booking />} />
+            <Suspense fallback={<Loader />}>
+              <AnimatePresence mode="wait">
+                <Routes location={location} key={location.pathname}>
+                  {/* ================= PUBLIC ROUTES ================= */}
+                  <Route path="/" element={<Home />} />
+                  <Route path="/gallery" element={<Gallery />} />
+                  <Route path="/packages" element={<Packages />} />
+                  <Route path="/founder" element={<Founder />} />
+                  <Route path="/testimonials" element={<Testimonials />} />
+                  <Route path="/faq" element={<FAQ />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/booking" element={<Booking />} />
 
-                <Route
-                  path="/bridal-studio-vyasarpadi"
-                  element={<BridalStudioVyasarpadi />}
-                />
+                  <Route
+                    path="/bridal-studio-vyasarpadi"
+                    element={<BridalStudioVyasarpadi />}
+                  />
 
-                {/* ================= ADMIN ROUTES ================= */}
-                <Route path="/admin/login" element={<AdminLogin />} />
+                  {/* ================= ADMIN ROUTES ================= */}
+                  <Route path="/admin/login" element={<AdminLogin />} />
 
-                {/* Protected Admin Routes */}
-                <Route element={<ProtectedRoute />}>
-                  <Route element={<AdminLayout />}>
-                    <Route path="/admin/dashboard" element={<AdminDashboard />} />
-                    <Route path="/admin/bookings" element={<AdminBookings />} />
-                    <Route path="/admin/messages" element={<AdminMessages />} />
-                    {/* Placeholder routes for now, will implement files next */}
-                    <Route path="/admin/packages" element={<AdminPackages />} />
-                    <Route path="/admin/gallery" element={<AdminGallery />} />
+                  {/* Protected Admin Routes */}
+                  <Route element={<ProtectedRoute />}>
+                    <Route element={<AdminLayout />}>
+                      <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                      <Route path="/admin/bookings" element={<AdminBookings />} />
+                      <Route path="/admin/messages" element={<AdminMessages />} />
+                      {/* Placeholder routes for now, will implement files next */}
+                      <Route path="/admin/packages" element={<AdminPackages />} />
+                      <Route path="/admin/gallery" element={<AdminGallery />} />
+                    </Route>
                   </Route>
-                </Route>
 
-              </Routes>
-            </AnimatePresence>
+                </Routes>
+              </AnimatePresence>
+            </Suspense>
           </main>
 
           {/* ✅ Hide Footer & Chatbot in Admin */}
           {!isAdminRoute && <Footer />}
           {!isAdminRoute && <Chatbot />}
-        </div>
-      )}
+        </div >
+      )
+      }
     </>
   );
 }

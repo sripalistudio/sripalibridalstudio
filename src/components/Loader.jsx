@@ -7,16 +7,16 @@ const Loader = ({ onLoadingComplete }) => {
   useEffect(() => {
     // Check if we've already shown the loader this session
     const hasSeenLoader = sessionStorage.getItem('hasSeenLoader');
-    
+
     if (hasSeenLoader) {
       setIsVisible(false);
-      onLoadingComplete();
+      if (onLoadingComplete) onLoadingComplete();
     } else {
       // Logic for first time load
       const timer = setTimeout(() => {
         setIsVisible(false);
         sessionStorage.setItem('hasSeenLoader', 'true');
-        onLoadingComplete();
+        if (onLoadingComplete) onLoadingComplete();
       }, 3500); // 3.5 seconds cinematic wait
 
       return () => clearTimeout(timer);
@@ -72,18 +72,18 @@ const Loader = ({ onLoadingComplete }) => {
             >
               Bridal Studio
             </motion.p>
-            
+
             <motion.div
-               initial={{ scaleX: 0 }}
-               animate={{ scaleX: 1 }}
-               transition={{ duration: 1.5, delay: 2, ease: "easeInOut" }}
-               style={{
-                 marginTop: '2rem',
-                 height: '1px',
-                 width: '150px',
-                 background: 'linear-gradient(90deg, transparent, #C6A87C, transparent)',
-                 margin: '2rem auto 0'
-               }}
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1.5, delay: 2, ease: "easeInOut" }}
+              style={{
+                marginTop: '2rem',
+                height: '1px',
+                width: '150px',
+                background: 'linear-gradient(90deg, transparent, #C6A87C, transparent)',
+                margin: '2rem auto 0'
+              }}
             />
           </div>
         </motion.div>

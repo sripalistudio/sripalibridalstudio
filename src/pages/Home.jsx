@@ -178,6 +178,7 @@ const Home = () => {
                             <img
                                 src="/assets/founder.webp"
                                 alt="Lead Artist"
+                                loading="lazy"
                                 style={{ width: '100%', borderRadius: '8px', position: 'relative', zIndex: 1, filter: 'grayscale(10%) contrast(1.1)' }}
                             />
                         </motion.div>
@@ -372,7 +373,7 @@ const Home = () => {
                             style={{ background: '#15171e', borderRadius: '8px', overflow: 'hidden', textAlign: 'center', paddingBottom: '2rem' }}
                         >
                             <div style={{ height: '220px', overflow: 'hidden', marginBottom: '1.5rem' }}>
-                                <img src="/assets/service_makeup.webp" alt="Bridal Makeup" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
+                                <img src="/assets/service_makeup.webp" alt="Bridal Makeup" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
                             </div>
                             <div style={{ padding: '0 1.5rem' }}>
                                 <h3 style={{ marginBottom: '0.8rem', color: '#fff', fontSize: '1.4rem' }}>Bridal Makeup</h3>
@@ -391,7 +392,7 @@ const Home = () => {
                             style={{ background: '#15171e', borderRadius: '8px', overflow: 'hidden', textAlign: 'center', paddingBottom: '2rem' }}
                         >
                             <div style={{ height: '220px', overflow: 'hidden', marginBottom: '1.5rem' }}>
-                                <img src="/assets/service_hair.webp" alt="Hair Styling" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
+                                <img src="/assets/service_hair.webp" alt="Hair Styling" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
                             </div>
                             <div style={{ padding: '0 1.5rem' }}>
                                 <h3 style={{ marginBottom: '0.8rem', color: '#fff', fontSize: '1.4rem' }}>Hair Styling</h3>
@@ -410,7 +411,7 @@ const Home = () => {
                             style={{ background: '#15171e', borderRadius: '8px', overflow: 'hidden', textAlign: 'center', paddingBottom: '2rem' }}
                         >
                             <div style={{ height: '220px', overflow: 'hidden', marginBottom: '1.5rem' }}>
-                                <img src="/assets/service_saree.webp" alt="Saree Draping" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
+                                <img src="/assets/service_saree.webp" alt="Saree Draping" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
                             </div>
                             <div style={{ padding: '0 1.5rem' }}>
                                 <h3 style={{ marginBottom: '0.8rem', color: '#fff', fontSize: '1.4rem' }}>Saree Draping</h3>
