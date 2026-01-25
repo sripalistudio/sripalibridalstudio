@@ -17,7 +17,7 @@ const Loader = ({ onLoadingComplete }) => {
         setIsVisible(false);
         sessionStorage.setItem('hasSeenLoader', 'true');
         if (onLoadingComplete) onLoadingComplete();
-      }, 3500); // 3.5 seconds cinematic wait
+      }, 800); // reduced wait for performance
 
       return () => clearTimeout(timer);
     }

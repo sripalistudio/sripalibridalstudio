@@ -24,11 +24,13 @@ const BridalStudioVyasarpadi = React.lazy(() => import("./pages/BridalStudioVyas
 
 // Admin Pages Lazy Load
 const AdminLogin = React.lazy(() => import("./pages/admin/Login"));
+const AdminResetPassword = React.lazy(() => import("./pages/admin/ResetPassword"));
 const AdminDashboard = React.lazy(() => import("./pages/admin/Dashboard"));
 const AdminBookings = React.lazy(() => import("./pages/admin/Bookings"));
 const AdminPackages = React.lazy(() => import("./pages/admin/Packages"));
 const AdminGallery = React.lazy(() => import("./pages/admin/Gallery"));
 const AdminMessages = React.lazy(() => import("./pages/admin/Messages"));
+const AdminProfile = React.lazy(() => import("./pages/admin/Profile"));
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -69,6 +71,7 @@ function App() {
 
                   {/* ================= ADMIN ROUTES ================= */}
                   <Route path="/admin/login" element={<AdminLogin />} />
+                  <Route path="/admin/reset-password" element={<AdminResetPassword />} />
 
                   {/* Protected Admin Routes */}
                   <Route element={<ProtectedRoute />}>
@@ -76,6 +79,7 @@ function App() {
                       <Route path="/admin/dashboard" element={<AdminDashboard />} />
                       <Route path="/admin/bookings" element={<AdminBookings />} />
                       <Route path="/admin/messages" element={<AdminMessages />} />
+                      <Route path="/admin/profile" element={<AdminProfile />} />
                       {/* Placeholder routes for now, will implement files next */}
                       <Route path="/admin/packages" element={<AdminPackages />} />
                       <Route path="/admin/gallery" element={<AdminGallery />} />

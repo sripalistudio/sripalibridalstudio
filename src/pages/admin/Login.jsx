@@ -10,6 +10,9 @@ const AdminLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const [isResetMode, setIsResetMode] = useState(false);
+  const [resetMessage, setResetMessage] = useState("");
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -30,6 +33,27 @@ const AdminLogin = () => {
     setLoading(false);
   };
 
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setResetMessage("");
+
+    // Ensure URL is absolute
+    const redirectTo = window.location.origin + "/admin/reset-password";
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo,
+    });
+
+    if (error) {
+      setError(error.message);
+    } else {
+      setResetMessage("Password reset link has been sent to your email.");
+    }
+    setLoading(false);
+  };
+
   return (
     <div
       style={{
@@ -41,7 +65,7 @@ const AdminLogin = () => {
       }}
     >
       <form
-        onSubmit={handleLogin}
+        onSubmit={isResetMode ? handleResetPassword : handleLogin}
         style={{
           width: "350px",
           padding: "2rem",
@@ -50,35 +74,61 @@ const AdminLogin = () => {
           border: "1px solid #333",
         }}
       >
-        <h2 style={{ textAlign: "center", color: "#c6a87c" }}>Admin Login</h2>
+        <h2 style={{ textAlign: "center", color: "#c6a87c", marginBottom: '1.5rem' }}>
+          {isResetMode ? "Reset Password" : "Admin Login"}
+        </h2>
 
-        {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+        {error && <p style={{ color: "#ef4444", textAlign: "center", marginBottom: '1rem', fontSize: '0.9rem' }}>{error}</p>}
+        {resetMessage && <p style={{ color: "#10b981", textAlign: "center", marginBottom: '1rem', fontSize: '0.9rem' }}>{resetMessage}</p>}
 
         <input
           type="email"
-          placeholder="Email"
+          placeholder="Email Address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
           style={inputStyle}
         />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={inputStyle}
-        />
+        {!isResetMode && (
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={inputStyle}
+          />
+        )}
 
         <button type="submit" disabled={loading} style={buttonStyle}>
-          {loading ? "Logging in..." : "Login"}
+          {loading ? "Processing..." : (isResetMode ? "Send Reset Link" : "Login")}
         </button>
+
+        <div style={{ marginTop: "1rem", textAlign: "center" }}>
+          <button
+            type="button"
+            onClick={() => {
+              setIsResetMode(!isResetMode);
+              setError("");
+              setResetMessage("");
+            }}
+            style={{
+              background: "transparent",
+              color: "#aaa",
+              fontSize: "0.9rem",
+              textDecoration: "underline",
+              padding: 0
+            }}
+          >
+            {isResetMode ? "Back to Login" : "Forgot Password?"}
+          </button>
+        </div>
       </form>
     </div>
   );
 };
+
 
 const inputStyle = {
   width: "100%",

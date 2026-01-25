@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "../supabaseClient";
-import { LayoutDashboard, Calendar, Package, Image, LogOut, Mail, Menu, X } from "lucide-react";
+import { LayoutDashboard, Calendar, Package, Image, LogOut, Mail, Menu, X, User } from "lucide-react";
 
 const AdminLayout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -17,6 +17,7 @@ const AdminLayout = () => {
         { name: "Messages", path: "/admin/messages", icon: <Mail size={20} /> },
         { name: "Packages", path: "/admin/packages", icon: <Package size={20} /> },
         { name: "Gallery", path: "/admin/gallery", icon: <Image size={20} /> },
+        { name: "Profile", path: "/admin/profile", icon: <User size={20} /> },
     ];
 
     return (

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+/* Google Fonts moved to index.html for better performance */
 
 :root {
   --color-gold: #F2D460CC;
@@ -264,11 +264,13 @@ button {
   flex: 1;
   padding: 2rem;
   overflow-y: auto;
-  width: 100%; /* Ensure it takes full width when needed */
+  width: 100%;
+  /* Ensure it takes full width when needed */
 }
 
 .admin-mobile-header {
-  display: none; /* Hidden on desktop */
+  display: none;
+  /* Hidden on desktop */
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
@@ -304,12 +306,13 @@ button {
     top: 0;
     left: 0;
     height: 100vh;
-    transform: translateX(-100%); /* Hidden by default */
+    transform: translateX(-100%);
+    /* Hidden by default */
   }
 
   .admin-sidebar.open {
     transform: translateX(0);
-    box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
   }
 
   .sidebar-overlay.open {
@@ -319,8 +322,9 @@ button {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 45; /* Below sidebar, above content */
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 45;
+    /* Below sidebar, above content */
     backdrop-filter: blur(2px);
   }
 

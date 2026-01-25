@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import HeroSlider from '../components/HeroSlider';
-import ImageComparisonSlider from '../components/ImageComparisonSlider';
+// import ImageComparisonSlider from '../components/ImageComparisonSlider'; // Removed static import
 import SEO from '../components/SEO';
+
+// Lazy Load Component
+const ImageComparisonSlider = lazy(() => import('../components/ImageComparisonSlider'));
 
 import { Frown, Droplets, Palette, Award, ShieldCheck, Camera, Quote, Star } from 'lucide-react';
 
@@ -44,6 +47,8 @@ const Home = () => {
     };
 
     useEffect(() => {
+        // Preconnect to Supabase to speed up connection?
+        // Actually, we can just run the fetch.
         fetchHeroImages();
     }, []);
 
@@ -179,7 +184,9 @@ const Home = () => {
                                 src="/assets/founder.webp"
                                 alt="Lead Artist"
                                 loading="lazy"
-                                style={{ width: '100%', borderRadius: '8px', position: 'relative', zIndex: 1, filter: 'grayscale(10%) contrast(1.1)' }}
+                                width="500"
+                                height="600"
+                                style={{ width: '100%', height: 'auto', borderRadius: '8px', position: 'relative', zIndex: 1, filter: 'grayscale(10%) contrast(1.1)' }}
                             />
                         </motion.div>
 
@@ -232,10 +239,12 @@ const Home = () => {
                     <div style={{ maxWidth: '800px', margin: '0 auto' }}>
                         {/* Transformation Preview Area */}
                         <div style={{ marginBottom: '2.5rem' }}>
-                            <ImageComparisonSlider
-                                beforeImage="/assets/before.webp"
-                                afterImage="/assets/after.webp"
-                            />
+                            <Suspense fallback={<div style={{ height: '400px', background: '#222' }}>Loading Compare...</div>}>
+                                <ImageComparisonSlider
+                                    beforeImage="/assets/before.webp"
+                                    afterImage="/assets/after.webp"
+                                />
+                            </Suspense>
                         </div>
 
                         {/* Bride Info */}
@@ -261,10 +270,8 @@ const Home = () => {
                 </div>
             </section>
 
-
-
-
             {/* Stage 5: Testimonials */}
+            {/* ... (Kept as is but omitting for brevity, I will replace everything to be safe) */}
             <section className="section-padding" style={{ background: '#1A1C23' }}>
                 <div className="container">
                     <motion.div
@@ -373,7 +380,7 @@ const Home = () => {
                             style={{ background: '#15171e', borderRadius: '8px', overflow: 'hidden', textAlign: 'center', paddingBottom: '2rem' }}
                         >
                             <div style={{ height: '220px', overflow: 'hidden', marginBottom: '1.5rem' }}>
-                                <img src="/assets/service_makeup.webp" alt="Bridal Makeup" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
+                                <img src="/assets/service_makeup.webp" alt="Bridal Makeup" loading="lazy" width="400" height="300" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
                             </div>
                             <div style={{ padding: '0 1.5rem' }}>
                                 <h3 style={{ marginBottom: '0.8rem', color: '#fff', fontSize: '1.4rem' }}>Bridal Makeup</h3>
@@ -392,7 +399,7 @@ const Home = () => {
                             style={{ background: '#15171e', borderRadius: '8px', overflow: 'hidden', textAlign: 'center', paddingBottom: '2rem' }}
                         >
                             <div style={{ height: '220px', overflow: 'hidden', marginBottom: '1.5rem' }}>
-                                <img src="/assets/service_hair.webp" alt="Hair Styling" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
+                                <img src="/assets/service_hair.webp" alt="Hair Styling" loading="lazy" width="400" height="300" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
                             </div>
                             <div style={{ padding: '0 1.5rem' }}>
                                 <h3 style={{ marginBottom: '0.8rem', color: '#fff', fontSize: '1.4rem' }}>Hair Styling</h3>
@@ -411,7 +418,7 @@ const Home = () => {
                             style={{ background: '#15171e', borderRadius: '8px', overflow: 'hidden', textAlign: 'center', paddingBottom: '2rem' }}
                         >
                             <div style={{ height: '220px', overflow: 'hidden', marginBottom: '1.5rem' }}>
-                                <img src="/assets/service_saree.webp" alt="Saree Draping" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
+                                <img src="/assets/service_saree.webp" alt="Saree Draping" loading="lazy" width="400" height="300" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
                             </div>
                             <div style={{ padding: '0 1.5rem' }}>
                                 <h3 style={{ marginBottom: '0.8rem', color: '#fff', fontSize: '1.4rem' }}>Saree Draping</h3>
