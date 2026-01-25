@@ -18,9 +18,18 @@ const Portfolio = () => {
   }, []);
 
   // ================= FETCH ==================
+  // ================= FETCH ==================
   const fetchGallery = async () => {
-    setLoading(true);
+    // 1. Try to load from cache first
+    const cachedData = localStorage.getItem('galleryCache');
+    if (cachedData) {
+      setImages(JSON.parse(cachedData));
+      setLoading(false); // Immediate display
+    } else {
+      setLoading(true); // Only show skeleton if no cache
+    }
 
+    // 2. Network fetch (Background refresh)
     const { data, error } = await supabase
       .from("gallery")
       .select("*")
@@ -37,10 +46,11 @@ const Portfolio = () => {
           .publicUrl,
       }));
 
+      // 3. Update state and cache
       setImages(formatted);
+      localStorage.setItem('galleryCache', JSON.stringify(formatted));
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   // ================= LIGHTBOX ==================

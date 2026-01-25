@@ -58,10 +58,6 @@ const HeroSlider = ({ images = [], interval = 5000 }) => {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 1.5, ease: 'easeOut' }}
-                    // Performance optimizations
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="async"
                     style={{
                         position: 'absolute',
                         top: 0,

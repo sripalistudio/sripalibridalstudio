@@ -17,8 +17,16 @@ const Packages = () => {
   }, []);
 
   const fetchPackages = async () => {
-    setLoading(true);
+    // 1. Cache Check
+    const cachedPackages = localStorage.getItem('packagesCache');
+    if (cachedPackages) {
+      setPackages(JSON.parse(cachedPackages));
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
 
+    // 2. Network Fetch
     const { data, error } = await supabase
       .from("packages")
       .select("id, title, price, description, features")
@@ -29,10 +37,11 @@ const Packages = () => {
     if (error) {
       console.error("Packages Fetch Error:", error);
     } else {
+      // 3. Update Cache & State
       setPackages(data || []);
+      localStorage.setItem('packagesCache', JSON.stringify(data || []));
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
