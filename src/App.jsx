@@ -29,6 +29,7 @@ const AdminDashboard = React.lazy(() => import("./pages/admin/Dashboard"));
 const AdminBookings = React.lazy(() => import("./pages/admin/Bookings"));
 const AdminPackages = React.lazy(() => import("./pages/admin/Packages"));
 const AdminGallery = React.lazy(() => import("./pages/admin/Gallery"));
+const AdminMenGallery = React.lazy(() => import("./pages/admin/MenGallery"));
 const AdminMessages = React.lazy(() => import("./pages/admin/Messages"));
 const AdminProfile = React.lazy(() => import("./pages/admin/Profile"));
 
@@ -98,6 +99,7 @@ function App() {
                       {/* Placeholder routes for now, will implement files next */}
                       <Route path="/admin/packages" element={<AdminPackages />} />
                       <Route path="/admin/gallery" element={<AdminGallery />} />
+                      <Route path="/admin/mens-gallery" element={<AdminMenGallery />} />
                     </Route>
                   </Route>
 

@@ -17,6 +17,7 @@ const AdminLayout = () => {
         { name: "Messages", path: "/admin/messages", icon: <Mail size={20} /> },
         { name: "Packages", path: "/admin/packages", icon: <Package size={20} /> },
         { name: "Gallery", path: "/admin/gallery", icon: <Image size={20} /> },
+        { name: "Men's Gallery", path: "/admin/mens-gallery", icon: <Image size={20} /> },
         { name: "Profile", path: "/admin/profile", icon: <User size={20} /> },
     ];
 

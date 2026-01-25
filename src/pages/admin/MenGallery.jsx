@@ -5,7 +5,7 @@ import { compressImage } from "../../utils/compressImage";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "../../utils/cropImage";
 
-const AdminGallery = () => {
+const MenGallery = () => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
@@ -15,7 +15,7 @@ const AdminGallery = () => {
         file: null,
         category: "",
         caption: "",
-        website_type: "BRIDAL",
+        website_type: "MENS",
         is_active: true,
         is_hero: false,
     });
@@ -38,6 +38,7 @@ const AdminGallery = () => {
         const { data, error } = await supabase
             .from("gallery")
             .select("*")
+            .eq("website_type", "MENS")
             .order("created_at", { ascending: false });
 
         if (data) {
@@ -102,7 +103,7 @@ const AdminGallery = () => {
             const compressedFile = await compressImage(formData.file);
 
             // 1. Upload to Supabase Storage
-            const sanitizedName = `cropped_${Date.now()}.webp`;
+            const sanitizedName = `mens_cropped_${Date.now()}.webp`;
             const { data: uploadData, error: uploadError } = await supabase
                 .storage
                 .from(BUCKET)
@@ -126,7 +127,7 @@ const AdminGallery = () => {
             if (dbError) throw dbError;
 
             setShowModal(false);
-            setFormData({ category: "", caption: "", website_type: "BRIDAL", is_active: true, is_hero: false, file: null });
+            setFormData({ category: "", caption: "", website_type: "MENS", is_active: true, is_hero: false, file: null });
             setImageSrc(null);
             fetchImages();
 
@@ -140,13 +141,13 @@ const AdminGallery = () => {
     return (
         <div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem" }}>
-                <h1 style={{ color: "#c6a87c" }}>Gallery Manager</h1>
+                <h1 style={{ color: "#c6a87c" }}>Men's Gallery Manager</h1>
                 <button
                     onClick={() => {
                         setShowModal(true);
                         setImageSrc(null);
                         setShowCropper(false);
-                        setFormData({ category: "", caption: "", website_type: "BRIDAL", is_active: true, is_hero: false, file: null });
+                        setFormData({ category: "", caption: "", website_type: "MENS", is_active: true, is_hero: false, file: null });
                     }}
                     style={{
                         background: "#c6a87c",
@@ -272,7 +273,7 @@ const AdminGallery = () => {
 
                                 <input
                                     type="text"
-                                    placeholder="Category (e.g. Bridal, Engagement)"
+                                    placeholder="Category (e.g. Mens, Haircut)"
                                     value={formData.category}
                                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                                     style={inputStyle}
@@ -281,7 +282,7 @@ const AdminGallery = () => {
 
                                 <input
                                     type="text"
-                                    placeholder="Caption (e.g. Beautiful smile)"
+                                    placeholder="Caption (e.g. Fresh Fade)"
                                     value={formData.caption}
                                     onChange={(e) => setFormData({ ...formData, caption: e.target.value })}
                                     style={inputStyle}
@@ -362,4 +363,4 @@ const submitBtnStyle = {
     justifyContent: "center"
 };
 
-export default AdminGallery;
+export default MenGallery;

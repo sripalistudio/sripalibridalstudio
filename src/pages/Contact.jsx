@@ -69,7 +69,7 @@ const Contact = () => {
                                         </p>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
                                             <Clock size={14} />
-                                            <span>Mon-Sat: 10am - 7pm</span>
+                                            <span>Mon-Sat: 10am - 8:30pm</span>
                                         </div>
                                     </div>
                                 </div>
@@ -93,8 +93,8 @@ const Contact = () => {
                                     <div>
                                         <h4 style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '0.5rem' }}>Visit Us</h4>
                                         <p style={{ color: 'var(--color-text-secondary)', lineHeight: '1.6' }}>
-                                            123, Luxury Avenue, Anna Nagar,<br />
-                                            Chennai, Tamil Nadu - 600040
+                                            146, Erukkenchery High Rd, Sharma Nagar,<br />
+                                            Vyasarpadi, Chennai, Tamil Nadu 600039
                                         </p>
                                     </div>
                                 </div>
