@@ -288,16 +288,7 @@ const MenGallery = () => {
                                     style={inputStyle}
                                 />
 
-                                <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#fff" }}>
-                                    <input
-                                        type="checkbox"
-                                        id="isHero"
-                                        checked={formData.is_hero || false}
-                                        onChange={(e) => setFormData({ ...formData, is_hero: e.target.checked })}
-                                        style={{ width: "20px", height: "20px", cursor: "pointer" }}
-                                    />
-                                    <label htmlFor="isHero" style={{ cursor: "pointer", fontSize: "1rem" }}>Show on Home Page (Hero Section)</label>
-                                </div>
+
 
                                 <button type="submit" disabled={uploading || !formData.file} style={{ ...submitBtnStyle, opacity: (!formData.file || uploading) ? 0.5 : 1 }}>
                                     {uploading ? "Uploading..." : "Upload Final Image"}

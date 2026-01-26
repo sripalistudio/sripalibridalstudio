@@ -94,7 +94,8 @@ const Contact = () => {
                                         <h4 style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '0.5rem' }}>Visit Us</h4>
                                         <p style={{ color: 'var(--color-text-secondary)', lineHeight: '1.6' }}>
                                             146, Erukkenchery High Rd, Sharma Nagar,<br />
-                                            Vyasarpadi, Chennai, Tamil Nadu 600039
+                                            Vyasarpadi, Chennai, Tamil Nadu 600039<br />
+                                            <span style={{ fontSize: '0.9em', color: 'var(--color-text-muted)' }}>Landmark: Mysore Mahal Opposite</span>
                                         </p>
                                     </div>
                                 </div>

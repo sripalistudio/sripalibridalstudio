@@ -51,7 +51,7 @@ const Footer = () => {
                             </a>
                         </li>
                         <li>
-                            <a href="https://magic7signaturesaloon.sripalibridalstudio.in" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>
+                            <a href="https://magic7signaturesalon.sripalibridalstudio.in" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>
                                 MAGIC 7 Signature Salon
                             </a>
                         </li>
@@ -62,7 +62,7 @@ const Footer = () => {
                 <div>
                     <h4 style={{ color: 'var(--color-text-primary)', marginBottom: '1.2rem', fontFamily: 'var(--font-sans)', fontSize: '0.9rem', textTransform: 'uppercase' }}>Contact</h4>
                     <ul style={{ listStyle: 'none', color: 'var(--color-text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.8rem', marginBottom: '1.5rem' }}>
-                        <li>146, Erukkenchery High Rd, Sharma Nagar, Vyasarpadi, Chennai, Tamil Nadu 600039</li>
+                        <li>146, Erukkenchery High Rd, Sharma Nagar, Vyasarpadi, Chennai, Tamil Nadu 600039<br /><span style={{ fontSize: '0.9rem', color: 'var(--color-gold)', marginTop: '0.5rem', display: 'inline-block' }}>Landmark: Mysore Mahal Opposite</span></li>
                         <li><a href="mailto:sripalistudio@gmail.com" style={{ color: 'inherit' }}>sripalistudio@gmail.com</a></li>
                         <li><a href="tel:+917305397887" style={{ color: 'inherit' }}>+91 73053 97887</a></li>
                     </ul>
